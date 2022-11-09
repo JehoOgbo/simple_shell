@@ -1,0 +1,44 @@
+#include "header.h"
+
+/**
+ * build_list - builds a list from the path directories
+ *
+ * Return: pointer to the first node of the list
+ */
+list_t *build_list(char **environ)
+{
+	int i = 0;
+	char *str, delim = ':', delim1 = '=', *token, *str1;
+	list_t *head = NULL;
+
+	while (*(environ + i) != NULL)
+	{
+		if (strncmp("PATH", *(environ + i), 4) == 0)
+			break;
+		i++;
+	}
+	str = strdup(*(environ + i));
+	for (i = 0; ; i++)
+	{
+		if (i == 0)
+			token = strtok(str, &delim1);
+		else
+			token = strtok(NULL, &delim1);
+		if (token == NULL)
+			break;
+		if (i != 0)
+			str1 = token;
+	}
+	/*free(str);*/
+	for (i = 0; ; i++)
+	{
+		if (i == 0)
+			token = strtok(str1, &delim);
+		else
+			token = strtok(NULL, &delim);
+		if (token == NULL)
+			break;
+		add_node_end(&head, token);
+	}
+	return (head);
+}
