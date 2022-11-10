@@ -11,6 +11,7 @@
 #include <fcntl.h>
 
 char **split_string(char *str);
+int get_operator(char **, char **, char *);
 char *_getenv(const char *name);
 void path_printer(void);
 
@@ -38,6 +39,5 @@ char *check_dir(char *, char *);
 void free_list(list_t *head);
 void _printenv(char **environ);
 int _getline(char **);
-int get_operator(char **, char **, char *, list_t *);
 
 #endif /*HEADER_H*/

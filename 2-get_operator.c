@@ -14,18 +14,18 @@
  *
  * Return: void
  */
-int get_operator(char **buffer, char **environ, char *arg)
+int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 {
 	pid_t pid;
 	struct stat buf;
-	list_t *head;
+	/*list_t *head;*/
 	int checker, status;
 	char *str;
 
 	status = stat(buffer[0], &buf);
 	if (status != 0)
 	{
-		head = build_list(environ);
+		/*head = build_list(environ);*/
 		while (head)
 		{
 			str = check_dir(head->str, buffer[0]);
@@ -36,7 +36,7 @@ int get_operator(char **buffer, char **environ, char *arg)
 			}
 			head = head->next;
 		}
-		free_list(head);
+		/*free_list(head);*/
 		buffer[0] = str;
 	}
 	if (status != 0 && checker != 1)

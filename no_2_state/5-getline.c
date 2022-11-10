@@ -6,13 +6,13 @@
  *
  * Return: number of characters read excluding null bytes
  */
-/**int _getline(char **lineptr, char *stream)
+int _getline(char **lineptr, char *stream)
 {
-	int fd;
+	FILE *stdin;
 	ssize_t count_read;
 	char buffer[1024];
 
-	fd = open(1, O_RDONLY);
+	fd = open(, O_RDONLY);
 	if (fd == -1)
 		return (0);
 	count_read = read(fd, buffer, 1024);
@@ -22,18 +22,22 @@
 	*lineptr = buffer;
 	close(fd);
 	return (count_read);
-}*/
-int _getline(char **s)
+}
+/*int _getline(char **s)
 {
 	int c, i;
 
+
 	for (i = 0; (c = getchar()) != EOF && c != '\n'; i++)
-		*s[i] = c;
+	{
+		s = realloc(s, i * sizeof(char));
+		**(s + i) = c;
+	}
 	if (c == '\n')
 	{
-		*s[i] = c;
+		**(s + i) = c;
 		++i;
 	}
-	*s[i] = '\0';
+	**(s + i) = '\0';
 	return (i);
-}
+}*/

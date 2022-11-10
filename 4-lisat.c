@@ -8,7 +8,7 @@
 list_t *build_list(char **environ)
 {
 	int i = 0;
-	char *str, delim = ':', delim1 = '=', *token, *str1;
+	char *str, delim = ':', delim1 = '=', *token, *str1, *saveptr;
 	list_t *head = NULL;
 
 	while (*(environ + i) != NULL)
@@ -33,9 +33,9 @@ list_t *build_list(char **environ)
 	for (i = 0; ; i++)
 	{
 		if (i == 0)
-			token = strtok(str1, &delim);
+			token = strtok_r(str1, &delim, &saveptr);
 		else
-			token = strtok(NULL, &delim);
+			token = strtok_r(NULL, &delim, &saveptr);
 		if (token == NULL)
 			break;
 		add_node_end(&head, token);

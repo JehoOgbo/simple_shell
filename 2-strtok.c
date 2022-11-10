@@ -11,7 +11,7 @@
  */
 char **split_string(char *str)
 {
-	char **array, *token, delim = ' ';
+	char **array, *token, delim = ' ', *saveptr;
 	int ln, spaces = 2, j = 0;
 
 	for (ln = 0; str[ln]; ln++)
@@ -27,9 +27,9 @@ char **split_string(char *str)
 		if ((str[ln] == ' ' && str[ln - 1] != ' ') || str[ln] == '\0')
 		{
 			if (j == 0)
-				token = strtok(str, &delim);
+				token = strtok_r(str, &delim, &saveptr);
 			else
-				token = strtok(NULL, &delim);
+				token = strtok_r(NULL, &delim, &saveptr);
 			if (token == NULL)
 			{
 				array[j] = NULL;
