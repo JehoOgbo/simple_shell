@@ -30,14 +30,17 @@ typedef struct list_s
 list_t *build_list(char **);
 list_t *builde_list(void);
 list_t *add_node_end(list_t **head, const char *str);
-int _setenv(const char *name, const char *value, int overwrite);
+/*int _setenv(const char *name, const char *value, char **environ);*/
 char **split_string(char *);
-int _unsetenv(const char *name);
+int _unsetenv(const char *name, char **environ, char *excess);
 int open_dir(char *direct, char *name);
 char *check_dir(char *, char *);
 void free_list(list_t *head);
 void _printenv(char **environ);
 int _getline(char **);
 int get_operator(char **, char **, char *, list_t *);
+int _setenv(const char *, const char *, char **, char *);
+int _cd(char *directory/*, char **environ*/, char *format);
+void free_array(char **);
 
 #endif /*HEADER_H*/

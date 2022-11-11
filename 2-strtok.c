@@ -19,6 +19,8 @@ char **split_string(char *str)
 		if (str[ln] == ' ' && str[ln - 1] != ' ')
 			spaces++;
 	}
+	if (ln == 1)
+		return (NULL);
 
 	str[ln - 1] = '\0';
 	array = malloc(sizeof(char *) * spaces);

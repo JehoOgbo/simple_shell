@@ -11,6 +11,7 @@
  * @buffer: array of char pointers containing command and arguments
  * @environ: array of char pointers containing environment variables
  * @arg: pointer to the string used to start shell (for error messages)
+ * @head: pointer to the first element of a linked list
  *
  * Return: void
  */
@@ -18,14 +19,12 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 {
 	pid_t pid;
 	struct stat buf;
-	/*list_t *head;*/
 	int checker, status;
 	char *str;
 
 	status = stat(buffer[0], &buf);
 	if (status != 0)
 	{
-		/*head = build_list(environ);*/
 		while (head)
 		{
 			str = check_dir(head->str, buffer[0]);
@@ -36,12 +35,12 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 			}
 			head = head->next;
 		}
-		/*free_list(head);*/
 		buffer[0] = str;
 	}
 	if (status != 0 && checker != 1)
 	{
 		perror(arg);
+		free_array(buffer);
 		return (-1);
 	}
 	pid = fork();

@@ -1,7 +1,8 @@
 #include "header.h"
 
 /**
- * main - prints the environment using global variable environ.
+ * _printenv - prints the environment using global variable environ.
+ * @environ: local environment of the shell
  *
  * Return: 0 always success
  */

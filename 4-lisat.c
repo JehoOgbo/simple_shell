@@ -2,6 +2,7 @@
 
 /**
  * build_list - builds a list from the path directories
+ * @environ: local environment of the shell
  *
  * Return: pointer to the first node of the list
  */
