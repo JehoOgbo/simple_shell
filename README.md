@@ -36,3 +36,12 @@ write (man 2 write)
 
 We compile our shell this:
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+
+Testing:
+Our shell should work like this in interactive mode:
+$ ./hsh
+($) /bin/ls
+hsh main.c shell.c
+($)
+($) exit
+$
