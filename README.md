@@ -33,3 +33,6 @@ waitpid (man 2 waitpid)
 wait3 (man 2 wait3)
 wait4 (man 2 wait4)
 write (man 2 write)
+
+We compile our shell this:
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
