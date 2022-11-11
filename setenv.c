@@ -1,21 +1,24 @@
 #include "header.h"
 
-extern char **environ;
-
 /**
  * _setenv - changes or adds an environment variable
  * @name: name of the variable to be changed
  * @value: value to which variable is to be set to
- * @overwrite: number code which determines if the variable is to be overwritten
+ * @environ: local environment of shell to which changes will be made
+ * @arg: should be null or function fails
+ *
  * Return: 0 on success, -1 on failure
  */
-int _setenv(const char *name, const char *value)
+int _setenv(const char *name, const char *value, char **environ, char *arg)
 {
-	int i = 0, len_name, check;
+	int i = 0, len_name;
 	char *str;
 
-	if (!name)
+	if (arg || !value || !name)
+	{
+		fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
 		return (-1);
+	}
 	len_name = strlen(name);
 	while (*(environ + i))
 	{
@@ -23,10 +26,8 @@ int _setenv(const char *name, const char *value)
 			break;
 		i++;
 	}
-	/*if (check == 0 && overwrite == 0)*/
-		/*return (0);*/
 	str = strcat(strdup(name), "=");
 	*(environ + i) = strcat(str, value);
-	/*free(str);*/
+	*(environ + i + 1) = NULL;
 	return (0);
 }
