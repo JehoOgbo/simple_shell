@@ -61,3 +61,7 @@ hsh main.c shell.c test_ls_2
 $
 
 This project is fun!!!
+
+The collaborators are:
+Dohou Daniel (https://dohoudaniel@github.com)
+Jehoshaphat Ogbonnia (https://JehoOgbo@github.com)
