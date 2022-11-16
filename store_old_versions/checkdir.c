@@ -11,16 +11,11 @@ char *check_dir(char *directory, char *file)
 {
 	struct stat buffer;
 	char *str1;
-	int len_dir, len_file;
 
-	len_dir = strlen(directory);
-	len_file = strlen(directory);
-	str1 = malloc(sizeof(char) * (len_dir + len_file + 2));
-	str1 = strcpy(str1, directory);
+	str1 = strdup(directory);
 	strcat(str1, "/");
 	strcat(str1, file);
 	if (stat(str1, &buffer) == 0)
 		return (str1);
-	free(str1);
 	return (NULL);
 }

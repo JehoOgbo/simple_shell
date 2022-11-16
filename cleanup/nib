@@ -1,0 +1,13 @@
+#include "header.h"
+
+int main(void)
+{
+	char *buffer = NULL;
+	int count;
+	size_t n;
+
+	count = getline(&buffer, &n, stdin);
+	printf("%s%d\n", buffer, count);
+	free(buffer);
+	return (0);
+}

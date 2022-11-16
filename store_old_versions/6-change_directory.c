@@ -10,8 +10,9 @@
 int _cd(char *directory, char *format)
 {
 	struct stat buff;
-	size_t size = 200;
-	char buf[200];
+	/*char *buffer;*/
+	size_t size = 100;
+	char *buf = malloc(size);
 
 	if (stat(directory, &buff) == -1)
 	{
@@ -32,5 +33,11 @@ int _cd(char *directory, char *format)
 		return (-1);
 	}
 	getcwd(buf, size);
+	if (buf == NULL)
+	{
+		size = 200;
+		buf = realloc(buf, size);
+		getcwd(buf, size);
+	}
 	return (0);
 }

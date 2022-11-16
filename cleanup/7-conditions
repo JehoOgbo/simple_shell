@@ -1,0 +1,27 @@
+#include "header.h"
+
+/**
+ * conds - checks input for builtin functions
+ *
+ * @cmd: the command entered into program
+ * @first: first arg
+ * @sec: second arg
+ * @env: environment variables
+ * @num: number for unsetenv function
+ * @third: third arg
+ *
+ * Return: 0 or 1
+ */
+int conds(char *cmd, char *first, char *sec, char **env, char *third, int num)
+{
+	if (strcmp(cmd, "env") == 0 && !first)
+		_printenv(env);
+	else if (strcmp(cmd, "setenv") == 0)
+		err = _setenv(first, sec, env, third);
+	else if (strcmp(cmd, "unsetenv") == 0)
+		err = _unsetenv(first, env, sec, num);
+	else if (strcmp(cmd, "cd") == 0)
+		err = _cd(first, second);
+	else if (strcmp(cmd, "exit") == 0)
+		exiter(bu
+}

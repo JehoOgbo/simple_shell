@@ -16,12 +16,10 @@ char **split_string(char *str)
 
 	for (ln = 0; str[ln]; ln++)
 	{
-		if (str[ln] == '#')
-			break;
 		if (str[ln] == ' ' && str[ln - 1] != ' ')
 			spaces++;
 	}
-	if (ln == 1 || ln == 0)
+	if (ln == 1)
 		return (NULL);
 
 	str[ln - 1] = '\0';
@@ -34,7 +32,7 @@ char **split_string(char *str)
 				token = strtok_r(str, &delim, &saveptr);
 			else
 				token = strtok_r(NULL, &delim, &saveptr);
-			if (token == NULL || token[0] == '#')
+			if (token == NULL)
 			{
 				array[j] = NULL;
 				break;

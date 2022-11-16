@@ -19,7 +19,7 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 {
 	pid_t pid;
 	struct stat buf;
-	int checker = 0, status;
+	int checker, status;
 	char *str;
 
 	status = stat(buffer[0], &buf);
@@ -35,14 +35,13 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 			}
 			head = head->next;
 		}
+		buffer[0] = str;
 	}
 	if (status != 0 && checker != 1)
 	{
 		perror(arg);
 		return (-1);
 	}
-	buffer[0] = strcpy(buffer[0], str);
-	free(str);
 	pid = fork();
 	if (pid == -1)
 	{

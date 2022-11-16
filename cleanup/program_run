@@ -1,0 +1,7 @@
+ls
+ls -l
+ls -al
+env
+ls -al # this is a great day
+#cd ..
+cd ..

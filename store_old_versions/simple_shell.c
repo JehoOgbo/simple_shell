@@ -11,14 +11,14 @@
  */
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
-	char *buffer = NULL;
-	/*size_t n;*/
-	int i = 0, err = 0, number = no_env(env);
+	char *buffer;
+	size_t n;
+	int i = 0, err = 0;
 	char **arr;
 	list_t *head = build_list(env);
 
-	dprintf(2, "#cisfun$ ");
-	while ((i = _getline(&buffer, 1)) != -1)
+	printf("#cisfun$ ");
+	while ((i = getdelim(&buffer, &n, 10, stdin)) != -1)
 	{
 		arr = split_string(buffer);
 		if (arr == NULL)
@@ -31,19 +31,22 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		else if (strcmp(arr[0], "setenv") == 0)
 			err = _setenv(arr[1], arr[2], env, arr[3]);
 		else if (strcmp(arr[0], "unsetenv") == 0)
-			err = _unsetenv(arr[1], env, arr[2], number);
+			err = _unsetenv(arr[1], env, arr[2]);
 		else if (strcmp(arr[0], "cd") == 0)
-			err = _cd(arr[1], arr[2]);
+			err = _cd(arr[1]/*, env*/, arr[2]);
 		else if (strcmp(arr[0], "exit") == 0)
-			exitr(arr[1], env, buffer, arr, head, err, number);
-		else if (strcmp(arr[0], "simple_shell") == 0)
-			readfile(arr[1], arr[2], env, head, number, av[0]);
+		{
+			if (arr[1] != NULL)
+				err = atoi(arr[1]);
+			free_array(arr);
+			free_list(head);
+			exit(err);
+		}
 		else
 			err = get_operator(arr, env, av[0], head);
 		if (i == -1)/* || i == EOF)*/
 			return (-1);
-		dprintf(2, "#cisfun$ ");
-		free(buffer);
+		printf("#cisfun$ ");
 		free_array(arr);
 	}
 	return (0);
