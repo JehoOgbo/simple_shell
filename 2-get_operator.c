@@ -55,7 +55,6 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 	wait(NULL);
 
 	if (pid == 0)
-		status = execve(buffer[0], buffer, environ);
-	if (status) return (-1);
+		execve(buffer[0], buffer, environ);
 	return (0);
 }
