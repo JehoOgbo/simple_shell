@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "header.h"
+#include <errno.h>
 
 /**
  * main - prints input from the user
@@ -21,12 +22,13 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	while ((i = getline(&buffer, &n, stdin)) != -1)
 	{
 		arr = split_string(buffer);
-		if (arr == NULL)
+		if (arr == NULL || arr[0] == NULL)
 		{
 			/*printf("#cisfun$ ");*/
+			free_array(arr);
 			continue;
 		}
-		if (strcmp(arr[0], "env") == 0 && !(arr[1]))
+		else if (strcmp(arr[0], "env") == 0 && !(arr[1]))
 			_printenv(env);
 		else if (strcmp(arr[0], "setenv") == 0)
 			err = _setenv(arr[1], arr[2], env, arr[3]);

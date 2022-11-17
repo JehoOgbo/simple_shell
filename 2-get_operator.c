@@ -38,7 +38,7 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 	}
 	if (status != 0 && checker != 1)
 	{
-		dprintf(2, "%s: 1: %s: not found\n", arg, buffer[0]);
+		perror(arg);
 		return (-1);
 	}
 	if (status != 0)
@@ -55,6 +55,7 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 	wait(NULL);
 
 	if (pid == 0)
-		execve(buffer[0], buffer, environ);
+		status = execve(buffer[0], buffer, environ);
+	if (status) return (-1);
 	return (0);
 }

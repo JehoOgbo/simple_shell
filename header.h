@@ -10,6 +10,7 @@
 #include <dirent.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 char **split_string(char *str);
 char *_getenv(const char *name);

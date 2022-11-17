@@ -8,16 +8,21 @@
  */
 list_t *build_list(char **environ)
 {
-	int i = 0;
+	int i = 0, check = 0;
 	char *str, delim = ':', delim1 = '=', *token, *str1, *saveptr, *save;
 	list_t *head = NULL;
 
 	while (*(environ + i) != NULL)
 	{
 		if (strncmp("PATH", *(environ + i), 4) == 0)
+		{
+			check = 4;
 			break;
+		}
 		i++;
 	}
+	if (check == 0)
+		return (head);
 	str = strdup(*(environ + i));
 	for (i = 0; ; i++)
 	{
@@ -30,7 +35,6 @@ list_t *build_list(char **environ)
 		if (i != 0)
 			str1 = token;
 	}
-	/*free(str);*/
 	for (i = 0; ; i++)
 	{
 		if (i == 0)
@@ -42,6 +46,5 @@ list_t *build_list(char **environ)
 		add_node_end(&head, token);
 	}
 	free(str);
-	/*free(str1);*/
 	return (head);
 }

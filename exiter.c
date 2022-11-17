@@ -20,5 +20,7 @@ void exitr(char *ag, char **en, char *bf, char **ar, list_t *h, int er, int nm)
 	free_array(ar);
 	free_env(en, nm);
 	free_list(h);
+	if (er == 0)
+		er = errno;
 	exit(er);
 }
