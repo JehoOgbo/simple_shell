@@ -38,11 +38,14 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 	}
 	if (status != 0 && checker != 1)
 	{
-		perror(arg);
+		dprintf(2, "%s: 1: %s: not found\n", arg, buffer[0]);
 		return (-1);
 	}
-	buffer[0] = strcpy(buffer[0], str);
-	free(str);
+	if (status != 0)
+	{
+		buffer[0] = strcpy(buffer[0], str);
+		free(str);
+	}
 	pid = fork();
 	if (pid == -1)
 	{

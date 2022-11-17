@@ -12,13 +12,13 @@
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
 	char *buffer = NULL;
-	/*size_t n;*/
+	size_t n;
 	int i = 0, err = 0, number = no_env(env);
 	char **arr;
 	list_t *head = build_list(env);
 
-	dprintf(2, "#cisfun$ ");
-	while ((i = _getline(&buffer, 1)) != -1)
+	printf("#cisfun$ ");
+	while ((i = getline(&buffer, &n, stdin)) != -1)
 	{
 		arr = split_string(buffer);
 		if (arr == NULL)
@@ -42,8 +42,8 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			err = get_operator(arr, env, av[0], head);
 		if (i == -1)/* || i == EOF)*/
 			return (-1);
-		dprintf(2, "#cisfun$ ");
-		free(buffer);
+		printf("#cisfun$ ");
+		/*free(buffer);*/
 		free_array(arr);
 	}
 	return (0);
