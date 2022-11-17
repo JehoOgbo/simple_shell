@@ -15,12 +15,24 @@
 void exitr(char *ag, char **en, char *bf, char **ar, list_t *h, int er, int nm)
 {
 	if (ag != NULL)
+	{
 		er = atoi(ag);
+		if (er < 0)
+		{
+			dprintf(2, "./hsh: 1: exit: Illegal number: %s\n", ag);
+			exit(2);
+		}
+		if (er == 0 && ag[0] != '0')
+		{
+			dprintf(2, "./hsh: 1: exit: Illegal number: %s\n", ag);
+			exit(2);
+		}
+	}
 	free(bf);
 	free_array(ar);
 	free_env(en, nm);
 	free_list(h);
-	if (er == 0)
+	if (er == 0 && ag != NULL && er == 0)
 		er = errno;
 	exit(er);
 }

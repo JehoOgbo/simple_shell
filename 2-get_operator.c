@@ -39,7 +39,7 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 	if (status != 0 && checker != 1)
 	{
 		perror(arg);
-		return (-1);
+		return (2);
 	}
 	if (status != 0)
 	{

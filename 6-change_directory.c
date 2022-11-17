@@ -20,12 +20,12 @@ int _cd(char *directory, char *format)
 	}
 	if (format)
 		fprintf(stderr, "Too many arguments\n");
-	if (!(S_ISDIR(buff.st_mode)))
+	/*if (!(S_ISDIR(buff.st_mode)))
 	{
-		/* Handle error */
+		* Handle error *
 		printf("This is not a directory\n");
 		return (-1);
-	}
+	}*/
 	if (chdir(directory))
 	{
 		printf("Disallowed access");
