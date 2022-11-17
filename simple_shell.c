@@ -17,13 +17,13 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	char **arr;
 	list_t *head = build_list(env);
 
-	printf("#cisfun$ ");
+	/*printf("#cisfun$ ");*/
 	while ((i = getline(&buffer, &n, stdin)) != -1)
 	{
 		arr = split_string(buffer);
 		if (arr == NULL)
 		{
-			printf("#cisfun$ ");
+			/*printf("#cisfun$ ");*/
 			continue;
 		}
 		if (strcmp(arr[0], "env") == 0 && !(arr[1]))
@@ -42,7 +42,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			err = get_operator(arr, env, av[0], head);
 		if (i == -1)/* || i == EOF)*/
 			return (-1);
-		printf("#cisfun$ ");
+		/*printf("#cisfun$ ");*/
 		/*free(buffer);*/
 		free_array(arr);
 	}
