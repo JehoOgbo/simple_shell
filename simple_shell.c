@@ -16,9 +16,8 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	size_t n;
 	int i = 0, err = 0, number = no_env(env);
 	char **arr;
-	list_t *head = build_list(env);
+	list_t *head = NULL;
 
-	/*printf("#cisfun$ ");*/
 	while ((i = getline(&buffer, &n, stdin)) != -1)
 	{
 		arr = split_string(buffer);
@@ -28,7 +27,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			free_array(arr);
 			continue;
 		}
-		else if (strcmp(arr[0], "env") == 0 && !(arr[1]))
+		if (strcmp(arr[0], "env") == 0 && !(arr[1]))
 			_printenv(env);
 		else if (strcmp(arr[0], "setenv") == 0)
 			err = _setenv(arr[1], arr[2], env, arr[3]);
@@ -44,9 +43,8 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			err = get_operator(arr, env, av[0], head);
 		if (i == -1)/* || i == EOF)*/
 			return (-1);
-		/*printf("#cisfun$ ");*/
-		/*free(buffer);*/
 		free_array(arr);
 	}
+	free(buffer);
 	return (0);
 }

@@ -17,14 +17,15 @@
  */
 int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 {
-	pid_t pid;
+	/*pid_t pid;*/
 	struct stat buf;
-	int checker = 0, status;
+	int checker = 0, status, pid;
 	char *str;
 
 	status = stat(buffer[0], &buf);
 	if (status != 0)
 	{
+		head = build_list(environ);
 		while (head)
 		{
 			str = check_dir(head->str, buffer[0]);
@@ -35,6 +36,7 @@ int get_operator(char **buffer, char **environ, char *arg, list_t *head)
 			}
 			head = head->next;
 		}
+		free_list(head);
 	}
 	if (status != 0 && checker != 1)
 	{
